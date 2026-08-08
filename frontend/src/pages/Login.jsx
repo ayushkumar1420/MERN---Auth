@@ -1,7 +1,7 @@
 
 import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
-import api from "../api;"
+import api from "../api";
 
 function Login() {
 
@@ -10,7 +10,7 @@ function Login() {
 
     const navigate = useNavigate();
 
-    const handleLogin = (e) => {
+    const handleLogin = async(e) => {
         e.preventDefault();
 
         try {
@@ -55,7 +55,7 @@ return (
 
       <p>
         Don't have account?
-        <Link to="/signup"> Signup </Link>
+        <Link to="/signup">Signup</Link>
       </p>
     </div>
   )

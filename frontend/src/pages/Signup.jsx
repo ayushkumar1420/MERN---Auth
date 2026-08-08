@@ -10,7 +10,7 @@ function Signup () {
 
     const navigate = useNavigate();
 
-    const handleSignup = (e) => {
+    const handleSignup = async(e) => {
         e.preventDefault();
 
         try {
