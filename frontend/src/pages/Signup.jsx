@@ -1,4 +1,6 @@
 import { useState } from "react";
+import { useNavigate, Link } from "react-router-dom";
+import api from "../api";
 
 function Signup () {
 
@@ -6,14 +8,25 @@ function Signup () {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
+    const navigate = useNavigate();
+
     const handleSignup = (e) => {
         e.preventDefault();
 
-        console.log({
+        try {
+            const response = await api.post("/auth/signup", {
             name,
             email,
             password
         });
+
+        alert(response.data.message);
+
+        navigate("/");
+
+    } catch (error) {
+        alert(error.response?.data?.message || "signup failed");
+    }
     };
 
     return (
@@ -48,6 +61,11 @@ function Signup () {
         </button>
 
         </form>
+
+        <p>
+            Already have an account?
+            <Link to="/">Login here</Link>
+        </p>
         </div>
     )
 }

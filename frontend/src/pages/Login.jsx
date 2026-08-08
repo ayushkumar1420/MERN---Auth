@@ -1,18 +1,31 @@
 
 import { useState } from "react";
+import { useNavigate, Link } from "react-router-dom";
+import api from "../api;"
 
 function Login() {
 
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
+    const navigate = useNavigate();
+
     const handleLogin = (e) => {
         e.preventDefault();
 
-        console.log({ 
-            email,
-            password
-        });
+        try {
+            const response = await api.post("/auth/login", {
+                email,
+                password,
+            });
+
+            alert(response.data.message);
+
+            navigate("/dashboard");
+
+        } catch (error) {
+            alert(error.response?.data?.message || "login failed");
+        }
     };
 
 return (
@@ -39,6 +52,11 @@ return (
       </button>
 
       </form>
+
+      <p>
+        Don't have account?
+        <Link to="/signup"> Signup </Link>
+      </p>
     </div>
   )
 }
