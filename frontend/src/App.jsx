@@ -1,11 +1,21 @@
-import React from 'React'
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Login from "./pages/Login";
+import Signup from "./pages/Signup";
 
-const App = () => {
+function App() {
   return (
-    <div>
-      
-    </div>
+   <BrowserRouter>
+      <Routes>
+
+          <Route path="/" element={ <Login /> } />
+
+          <Route path="/signup" element={ <Signup /> } />
+
+          <Route path="/dashboard" element={ <dashboard /> }/>
+
+      </Routes>
+   </BrowserRouter>
   )
 }
 
-export default App
+export default App;
